@@ -1,0 +1,34 @@
+import time
+
+# Simulation des niveaux d'huile et de liquide de refroidissement
+oil_level = 80 #
+coolant_level = 90
+
+def check_vehicle_status():
+    global oil_level,coolant_level
+
+  # Simulation : Diminue les niveaux d'huile et de liquide de refroidissement avec le temps
+    oil_level -= 1
+    coolant_level -= 0.5
+
+  # Vérifier si les niveaux sont inférieurs aux seuils critiques
+if oil_level <= 10:
+    seed_notification("Maintenance requise", "Niveau d'huile bas ! Faites la vidange.")
+if coolant_level <= 20:
+    send_notification("Maintenance requise", "Niveau de liquide de refroidissement bas ! Faites le complément.")
+
+def seed_notification(title, message):
+    # Ici, vous pourriez implémenter le code pour envoyer des notifications sur votre téléphone ou par e-mail.
+    # Cela dépendra de la méthode de notification que vous souhaitez utiliser.
+    print(f"Notification : {title} - {message}")
+
+def main():
+    try:
+        while True:
+            check_vehicle_status()
+            time.sleep(86400)  # Vérifier l'état du véhicule une fois par jour (86400 secondes)
+    except KeyboardInterrupt:
+        print ("Arrêt du script")
+
+    if __name__=="__main__":
+        main()
